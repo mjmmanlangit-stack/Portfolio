@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark Jan M. Manlangit - Resume</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f9f9f9;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 20px;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+        }
+        
+        .header .subtitle {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 13px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-info a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+        }
+        
+        .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #007bff;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 8px;
+        }
+        
+        .entry {
+            margin-bottom: 18px;
+        }
+        
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 5px;
+        }
+        
+        .entry-title {
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+        
+        .entry-subtitle {
+            color: #666;
+            font-style: italic;
+            font-size: 14px;
+        }
+        
+        .entry-date {
+            color: #999;
+            font-size: 13px;
+        }
+        
+        .entry-description {
+            color: #555;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 5px;
+        }
+        
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .skill-badge {
+            background: #e8f0ff;
+            color: #007bff;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 24px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .download-btn:hover {
+            background: #0056b3;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                padding: 0;
+            }
+            
+            .download-btn {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 22px;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .entry-header {
+                flex-direction: column;
+            }
+            
+            .entry-date {
+                margin-top: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Mark Jan M. Manlangit</h1>
+            <div class="subtitle">4th Year BS in Information Systems | Web Developer</div>
+            <div class="contact-info">
+                <a href="mailto:manlangitmarkjan@gmail.com">manlangitmarkjan@gmail.com</a>
+                <span>|</span>
+                <a href="https://github.com/mjmmanlangit-stack">GitHub</a>
+                <span>|</span>
+                <a href="https://www.facebook.com/mark.manlangit.3914">Facebook</a>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Professional Summary</div>
+            <div class="entry-description">
+                Dedicated and passionate web developer with strong proficiency in front-end and back-end technologies. 4th-year Information Systems student with hands-on experience in building modern, responsive, and interactive web applications. Quick learner with a keen eye for detail and problem-solving skills. Enthusiastic about continuous learning and staying updated with the latest web development trends.
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Technical Skills</div>
+            <div class="skills-list">
+                <div class="skill-badge">HTML5</div>
+                <div class="skill-badge">CSS3</div>
+                <div class="skill-badge">JavaScript</div>
+                <div class="skill-badge">TypeScript</div>
+                <div class="skill-badge">PHP</div>
+                <div class="skill-badge">Laravel</div>
+                <div class="skill-badge">Tailwind CSS</div>
+                <div class="skill-badge">MySQL</div>
+                <div class="skill-badge">Git/GitHub</div>
+                <div class="skill-badge">Responsive Design</div>
+                <div class="skill-badge">REST APIs</div>
+                <div class="skill-badge">Nodemailer</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Experience & Projects</div>
+            
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="entry-title">Barangay Event Management System</span>
+                    <span class="entry-date">2024 - 2025 (Capstone Project)</span>
+                </div>
+                <div class="entry-subtitle">Laravel | MySQL | SMS Integration | QR Code Technology</div>
+                <div class="entry-description">
+                    Developed a comprehensive web application designed to help barangay communities efficiently manage events. Features include SMS notifications, QR code generation for attendee tracking, event scheduling, and real-time updates. Applied RAD methodology for rapid prototyping and iteration.
+                </div>
+            </div>
+            
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="entry-title">E-Commerce Frontend Prototype</span>
+                    <span class="entry-date">2024</span>
+                </div>
+                <div class="entry-subtitle">HTML | CSS | JavaScript | Responsive Design</div>
+                <div class="entry-description">
+                    Built a modern e-commerce prototype for Sepak Takraw products showcasing clean UI/UX design principles. Implemented responsive layouts, interactive product filters, and smooth user navigation.
+                </div>
+            </div>
+            
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="entry-title">Interactive Portfolio Website</span>
+                    <span class="entry-date">2025</span>
+                </div>
+                <div class="entry-subtitle">HTML | CSS | JavaScript | Vanta.js | OpenAI API | Nodemailer</div>
+                <div class="entry-description">
+                    Created a professional portfolio website featuring animated backgrounds (Vanta.js), an AI-powered chatbot (MarkBot using OpenAI), working contact form with email notifications, and a hidden mini-game. Deployed on Vercel with serverless API routes.
+                </div>
+            </div>
+            
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="entry-title">Browser-Based Game</span>
+                    <span class="entry-date">2023 - 2024</span>
+                </div>
+                <div class="entry-subtitle">JavaScript | DOM Manipulation | OOP Principles</div>
+                <div class="entry-description">
+                    Developed an interactive browser game demonstrating object-oriented programming principles and advanced DOM manipulation techniques for real-time user interaction.
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Education</div>
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="entry-title">Bachelor of Science in Information Systems</span>
+                    <span class="entry-date">Currently Enrolled (4th Year)</span>
+                </div>
+                <div class="entry-description">
+                    Completed intensive web development coursework covering full-stack development, database management, software development lifecycle (SDLC), and RAD methodology.
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Key Competencies</div>
+            <div class="skills-list">
+                <div class="skill-badge">Web Development</div>
+                <div class="skill-badge">Full-Stack Development</div>
+                <div class="skill-badge">Responsive Design</div>
+                <div class="skill-badge">Problem Solving</div>
+                <div class="skill-badge">Code Quality</div>
+                <div class="skill-badge">API Integration</div>
+                <div class="skill-badge">Database Design</div>
+                <div class="skill-badge">Version Control</div>
+                <div class="skill-badge">Deployment</div>
+                <div class="skill-badge">Quick Learner</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Goals</div>
+            <div class="entry-description">
+                Aspiring to become a professional web developer who builds impactful and innovative solutions. Committed to mastering modern frameworks like React and Node.js, and gaining valuable experience in professional development teams. Passionate about creating user-friendly interfaces and solving complex technical challenges.
+            </div>
+        </div>
+        
+        <center>
+            <button class="download-btn" onclick="window.print()">📥 Print as PDF</button>
+        </center>
+    </div>
+</body>
+</html>
