@@ -94,18 +94,183 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Toast Notification Function
+  function showToast(message, type = 'success', duration = 3000) {
+    // Create toast container if it doesn't exist
+    let toastContainer = document.getElementById('toast-container');
+    if (!toastContainer) {
+      toastContainer = document.createElement('div');
+      toastContainer.id = 'toast-container';
+      toastContainer.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 9999;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      `;
+      document.body.appendChild(toastContainer);
+    }
+
+    // Create toast element
+    const toast = document.createElement('div');
+    toast.style.cssText = `
+      background-color: #10b981;
+      color: #ffffff;
+      padding: 14px 16px;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 320px;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.5;
+      animation: slideInRight 0.25s ease-out;
+      margin-bottom: 12px;
+    `;
+
+    // Add checkmark icon SVG
+    const icon = document.createElement('svg');
+    icon.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+    icon.setAttribute('width', '20');
+    icon.setAttribute('height', '20');
+    icon.setAttribute('viewBox', '0 0 24 24');
+    icon.setAttribute('fill', 'none');
+    icon.setAttribute('stroke', 'currentColor');
+    icon.setAttribute('stroke-width', '2.5');
+    icon.setAttribute('stroke-linecap', 'round');
+    icon.setAttribute('stroke-linejoin', 'round');
+    icon.innerHTML = '<polyline points="20 6 9 17 4 12"></polyline>';
+    icon.style.flexShrink = '0';
+
+    const textContainer = document.createElement('span');
+    textContainer.textContent = message;
+    textContainer.style.flex = '1';
+
+    // Close button
+    const closeBtn = document.createElement('button');
+    closeBtn.innerHTML = '×';
+    closeBtn.style.cssText = `
+      background: none;
+      border: none;
+      color: #ffffff;
+      font-size: 24px;
+      padding: 0;
+      margin: 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+      opacity: 0.8;
+      transition: opacity 0.2s ease;
+      line-height: 1;
+    `;
+    closeBtn.addEventListener('mouseover', () => {
+      closeBtn.style.opacity = '1';
+    });
+    closeBtn.addEventListener('mouseout', () => {
+      closeBtn.style.opacity = '0.8';
+    });
+
+    // Close function
+    const removeToast = () => {
+      toast.style.animation = 'slideOutRight 0.2s ease-out';
+      setTimeout(() => {
+        toast.remove();
+      }, 200);
+    };
+
+    closeBtn.addEventListener('click', removeToast);
+
+    toast.appendChild(icon);
+    toast.appendChild(textContainer);
+    toast.appendChild(closeBtn);
+    toastContainer.appendChild(toast);
+
+    // Auto remove toast after duration
+    setTimeout(() => {
+      if (toastContainer.contains(toast)) {
+        removeToast();
+      }
+    }, duration);
+  }
+
+  // Add toast animations to document if not already added
+  if (!document.getElementById('toast-styles')) {
+    const style = document.createElement('style');
+    style.id = 'toast-styles';
+    style.textContent = `
+      @keyframes slideInRight {
+        from {
+          transform: translateX(400px);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+      
+      @keyframes slideOutRight {
+        from {
+          transform: translateX(0);
+          opacity: 1;
+        }
+        to {
+          transform: translateX(400px);
+          opacity: 0;
+        }
+      }
+
+      @media (max-width: 640px) {
+        #toast-container {
+          left: 12px !important;
+          right: 12px !important;
+        }
+        
+        #toast-container > div {
+          min-width: auto !important;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
   // Contact Form Submission
   const contactForm = document.getElementById("contact-form");
-  contactForm.addEventListener("submit", (e) => {
+  contactForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-    // Here you would typically send the form data to a backend service
-    // For now, we'll just show an alert and clear the form.
+    
     const formData = new FormData(contactForm);
     const name = formData.get("name");
+    const email = formData.get("email");
+    const message = formData.get("message");
     
-    alert(`Thank you, ${name}! Your message has been received.`);
-    
-    contactForm.reset();
+    try {
+      const response = await fetch("/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, message }),
+      });
+      
+      const data = await response.json();
+      
+      if (response.ok) {
+        showToast("Email sent successfully", "success", 3000);
+        contactForm.reset();
+      } else {
+        showToast(`Error: ${data.error || "Failed to send email"}`, "error", 3500);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      showToast("Error sending email. Please try again later.", "error", 3500);
+    }
   });
 
   // Lottie Animations for Projects
