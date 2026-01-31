@@ -3,9 +3,19 @@ const express = require('express');
 const OpenAI = require('openai');
 const cors = require('cors');
 const path = require('path'); // Import the 'path' module
+const nodemailer = require('nodemailer');
 
 const app = express();
 const port = 3001;
+
+// Email transporter setup
+const transporter = nodemailer.createTransport({
+  service: process.env.EMAIL_SERVICE,
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASSWORD,
+  },
+});
 
 // Middleware
 app.use(cors());
@@ -109,6 +119,37 @@ app.post('/chat', async (req, res) => {
       // Potentially an API key issue
       res.status(500).json({ error: 'An internal server error occurred. This could be due to an invalid API key or a problem with the OpenAI service.' });
     }
+  }
+});
+
+// --- Email Route ---
+app.post('/send-email', async (req, res) => {
+  try {
+    const { name, email, message } = req.body;
+
+    if (!name || !email || !message) {
+      return res.status(400).json({ error: 'Name, email, and message are required' });
+    }
+
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_TO,
+      subject: `New Message from ${name}`,
+      html: `
+        <h3>New Contact Form Submission</h3>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Message:</strong></p>
+        <p>${message.replace(/\n/g, '<br>')}</p>
+      `,
+      replyTo: email,
+    };
+
+    await transporter.sendMail(mailOptions);
+    res.json({ success: true, message: 'Email sent successfully!' });
+  } catch (error) {
+    console.error('Error sending email:', error);
+    res.status(500).json({ error: 'Failed to send email. Please try again later.' });
   }
 });
 
