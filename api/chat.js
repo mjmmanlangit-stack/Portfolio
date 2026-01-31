@@ -39,7 +39,9 @@ const predefinedResponses = {
   'hobbies': "Outside coding, Mark Jan enjoys playing games, exploring new tech, and working on fun personal projects.",
   'education': "He is currently a 4th-year Information Systems student at university.",
   'achievements': "Completing multiple advanced projects, creating interactive portfolio features, and continuously improving his coding skills are some of his achievements.",
-  'future': "He aims to master modern JavaScript frameworks like React and Node.js, and gain experience working in professional development teams."
+  'future': "He aims to master modern JavaScript frameworks like React and Node.js, and gain experience working in professional development teams.",
+  'pogi': "Of course! Everyone thinks Mark Jan is pogi 😉.",
+  'gf': "Mark Jan's girlfriend is Jessica Olalo from Viga. He loves her very much ❤️."
 };
 
 export default async function handler(req, res) {
