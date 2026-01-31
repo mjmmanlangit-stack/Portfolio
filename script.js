@@ -553,8 +553,8 @@ document.addEventListener("DOMContentLoaded", () => {
       // Use a finally block to ensure the typing indicator is always removed
       // after the request is complete, whether it succeeds or fails.
       try {
-        // IMPORTANT: Make sure your backend server is running on this port
-        const response = await fetch('http://localhost:3001/chat', { // This URL should now work correctly
+        // Use the API route instead of localhost
+        const response = await fetch('/api/chat', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
